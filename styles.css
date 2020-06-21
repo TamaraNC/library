@@ -55,9 +55,13 @@ button:hover {
     background: var(--light-gray);
     border-bottom: 4px solid var(--title-color)
 }
+.library__container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 .book__container {
     display: flex;
-    justify-content: center;
     margin-top: 2rem;
 }
 .modal__container {
@@ -93,6 +97,7 @@ label {
 }
 input {
     padding: 0.5rem;
+    font-size: 14px;
 }
 .book__read-elements {
     display: flex;
