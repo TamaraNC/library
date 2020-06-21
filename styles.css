@@ -33,8 +33,27 @@ button {
     cursor: pointer;
     transition: 0.6s all ease;
 }
+:focus {
+    /*outline: 1px solid white;*/
+}
+
 button:hover {
+    background: var(--title-color);
+    color: white;
+}
+.add__book:hover,
+.cancel:hover {
     background: var(--main-color);
+    color: var(--title-color)
+}
+.all,
+.books__read,
+.books__not-read {
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    background: var(--light-gray);
+    border-bottom: 4px solid var(--title-color)
 }
 .book__container {
     display: flex;
@@ -61,12 +80,19 @@ button:hover {
 }
 .modal {
     position: relative;
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
     margin-top: 8rem;
 }
+.modal__content {
+    display: flex;
+    flex-direction: column;
+}
 label {
     color: white;
+}
+input {
+    padding: 0.5rem;
 }
 .book__read-elements {
     display: flex;

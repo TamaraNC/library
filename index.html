@@ -11,41 +11,52 @@
     <header>
         <h1>My Library</h1>
         <button class="add">Add New Book</button>
+        <div class="buttons">
+            <button class="all">View All</button>
+            <button class="books__read">Read</button>
+            <button class="books__not-read">Not Read</button>
+        </div>
     </header>
-    <div class="modal__container">
+    <!--Modal-->
+    <form class="modal__container">
         <div class="modal">
-            <div>
+            <div class="modal__content">
                 <label for="">Title:</label>
-                <input type="text"> 
+                <input type="text" id="title"> 
             </div>
-            <div>
+            <div class="modal__content">
                 <label for="">Author:</label>
-                <input type="text">
+                <input type="text" id="author">
             </div>
-            <div>
+            <div class="modal__content">
                 <label for="">Pages:</label>
-                <input type="number">
+                <input type="number" id="pages">
             </div>
+            <label for="">Have you read it?</label>
             <div>
-                <label for="">Have you read it?</label>
-            <input type="radio" name ="read" value="yes">Yes
-            <input type="radio" name="read" value="no">No
+                <label for="yes">Yes</label>
+                <input type="radio" name ="read" value="yes">
+                <label for="no">No</label>
+                <input type="radio" name ="read" value="no">
             </div>
+            
             <button class="add__book">Add</button>
             <button class="cancel">Cancel</button>
         </div>
-    </div>
+    </form>
+
+    <!--End of Modal-->
     <div class="library__container">
         <div class="book__container">
             <div class="book">
                 <div class="title__content">
-                    <span class="main">Title: </span><span class="book__title">Marina</span>
+                    <span class="main">Title : </span><span class="book__title">Marina</span>
                 </div>
                 <div class="author__content">
-                    <span class="main">Author: </span><span class="book__author">Carlos Ruiz Zafon</span>
+                    <span class="main">Author : </span><span class="book__author">Carlos Ruiz Zafon</span>
                 </div>
                 <div class="pages__content">
-                    <span class="main">Pages: </span><span class="book__pages">358</span>
+                    <span class="main">Pages : </span><span class="book__pages">358</span>
                 </div>
                 <div class="book__read-elements">
                     <span class="book__read">Read</span>
@@ -55,6 +66,8 @@
                 </div>
             </div>
         </div>
+        
+       
     </div>
     <script src="app.js"></script>
 </body>
