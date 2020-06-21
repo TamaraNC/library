@@ -17,6 +17,15 @@
             <button class="books__not-read">Not Read</button>
         </div>
     </header>
+
+    <div class="error__message--container">
+        <div class="error__message--modal">
+            <div class="error">
+                <p>Complete the form!</p>
+                <button class ="error-btn">Ok</button>
+            </div>
+        </div>
+    </div>
     <!--Modal-->
     <form class="modal__container">
         <div class="modal">
@@ -46,27 +55,7 @@
     </form>
 
     <!--End of Modal-->
-    <div class="library__container">
-        <div class="book__container">
-            <div class="book">
-                <div class="title__content">
-                    <span class="main">Title : </span><span class="book__title">Marina</span>
-                </div>
-                <div class="author__content">
-                    <span class="main">Author : </span><span class="book__author">Carlos Ruiz Zafon</span>
-                </div>
-                <div class="pages__content">
-                    <span class="main">Pages : </span><span class="book__pages">358</span>
-                </div>
-                <div class="book__read-elements">
-                    <span class="book__read">Read</span>
-                    <a href="#"><i class="fas fa-check"></i></a>
-                    <a href="#"><i class="fas fa-times"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="app.js"></script>
+    <div class="library__container"></div>
+    <script src="script.js"></script>
 </body>
 </html>

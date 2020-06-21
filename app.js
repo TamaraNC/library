@@ -107,7 +107,7 @@ function render() {
         readContent.appendChild(uncheck);
         //Trash
         const trash = document.createElement("div");
-        trash.innerHTML = '<a href="#"><i class="fas fa-times"></i></a>';
+        trash.innerHTML = '<a href="#"><i class="fas fa-trash-alt"></i></a>';
         readContent.appendChild(trash);
     }
 }
