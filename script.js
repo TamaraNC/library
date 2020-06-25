@@ -7,6 +7,7 @@ const deleteBtn = document.querySelector(".fas fa-trash-alt");
 const modalTitle = document.querySelector("#title");
 const modalAuthor = document.querySelector("#author");
 const modalPages = document.querySelector("#pages");
+const isRead = document.querySelector("#read-status");
 
 //Toggle Modal
 const hideModal = () => {
@@ -20,13 +21,15 @@ const hideModal = () => {
  addBtn.addEventListener("click", showModal);
 
 let myLibrary = [];
+let index = 0;
 
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, read) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.isRead = isRead
+    this.read = read
 }
+
 
 submitBook.addEventListener("click", addBookToLibrary);
 
@@ -35,7 +38,9 @@ function addBookToLibrary(e) {
    let bookTitle = modalTitle.value;
    let bookAuthor = modalAuthor.value;
    let bookPages = modalPages.value;
+   let bookStatus = isRead.checked;
 
+   //Display error message if inputs are empty
    if (bookTitle === "" || bookAuthor === "" || bookPages === "") {
        const errorMessage = document.querySelector(".error__message--container");
        hideModal();
@@ -46,7 +51,9 @@ function addBookToLibrary(e) {
            showModal();
        })
    } else {
-    let book = new Book(bookTitle, bookAuthor, bookPages);
+    let book = new Book(bookTitle, bookAuthor, bookPages, bookStatus);
+    //let book1 = new Book ("El amor en los tiempos del colera", "Gabriel Garcia Marquez", "476", true);
+    //myLibrary.push(book1)
     myLibrary.push(book);
     
     hideModal();
@@ -71,22 +78,45 @@ function render() {
                 '<span class="main">Pages : </span><span class="book__pages">'+` ${myLibrary[i].pages}`+'</span>' +
             '</div>' +
             '<div class="book__read-elements">' +
-                '<span class="book__read">Read</span>' +
+                '<span class="book__read">I read it</span>' +
                 '<a href="#"><i class="fas fa-check"></i></a>' +
                 '<a href="#"><i class="fas fa-times"></i>' +
                 '<a href="#"><i class="fas fa-trash-alt"></i></a>' +
             '</div>' +
         '</div>' +
     '</div>'
+    readStatus(myLibrary[i].checked);
     }
+    
     modalTitle.value = "";
     modalAuthor.value = "";
     modalPages.value = "";
+    isRead.checked = false;
 }
 
-//Read functionality and buttons
-//Local storage
+function readStatus(status) {
+    const bookReadStatus = document.querySelector(".book__read");
+    if (status) {
+        bookReadStatus.classList.add("yes");
+        bookReadStatus.textContent = "I read it";
+        bookReadStatus.style.color = "rgb(110, 176, 120)";
+    } else {
+        bookReadStatus.classList.add("no");
+        bookReadStatus.textContent = "I have not read it";
+        bookReadStatus.style.color = "rgb(194, 89, 89)";
+    }
+}
 
+
+
+    
+  
+
+
+
+//Read functionality and buttons
+//Filter function
+//Local storage
 
 
 

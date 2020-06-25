@@ -94,6 +94,7 @@ button:hover {
 }
 label {
     color: white;
+    margin-right: 1rem;
 }
 input {
     padding: 0.5rem;
@@ -107,6 +108,7 @@ input {
 i {
     color: white;
     pointer-events: none;
+    margin: 0.5rem;
 }
 .book__title,
 .book__author,
@@ -145,7 +147,7 @@ i {
     color: rgb(101, 3, 3);
     font-weight: bold;
 }
-.error-btn {
+.error-btn:hover {
     color: white;
     background: rgb(101, 3, 3);
 }
