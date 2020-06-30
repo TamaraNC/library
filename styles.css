@@ -107,7 +107,7 @@ input {
 .main,
 i {
     color: white;
-    pointer-events: none;
+    /*pointer-events: none;*/
     margin: 0.5rem;
 }
 .book__title,
@@ -150,4 +150,10 @@ i {
 .error-btn:hover {
     color: white;
     background: rgb(101, 3, 3);
+}
+.no {
+    color:rgb(194, 89, 89)
+}
+.yes {
+    color:rgb(110, 176, 120)
 }

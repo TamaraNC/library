@@ -1,4 +1,3 @@
-
 const addBtn = document.querySelector(".add");
 const modal = document.querySelector(".modal__container");
 const library = document.querySelector(".library__container");
@@ -59,8 +58,6 @@ function addBookToLibrary(e) {
    } else {
     let book = new Book(bookTitle, bookAuthor, bookPages, bookStatus);
     myLibrary.push(book);
-
-    console.log(book);
     
     hideModal();
     render();
@@ -85,13 +82,13 @@ function render() {
                 '<span class="main">Pages : </span><span class="book__pages">'+` ${myLibrary[i].pages}`+'</span>' +
             '</div>' +
             '<div class="book__read-elements">' +
-                '<span class="book__read yes" style="color:rgb(110, 176, 120)">I read it</span>' +
+                '<span class="book__read yes">I read it</span>' +
                 '<a href="#"><i class="fas fa-check"></i></a>' +
-                '<a href="#"><i class="fas fa-times"></i>' +
                 '<a href="#"><i class="fas fa-trash-alt"></i></a>' +
             '</div>' +
         '</div>' +
     '</div>';
+    
             
     }else {
     library.innerHTML += 
@@ -107,32 +104,64 @@ function render() {
                 '<span class="main">Pages : </span><span class="book__pages">'+` ${myLibrary[i].pages}`+'</span>' +
             '</div>' +
             '<div class="book__read-elements">' +
-                '<span class="book__read no" style="color:rgb(194, 89, 89)"">I have not read it</span>' +
+                '<span class="book__read no">I have not read it</span>' +
                 '<a href="#"><i class="fas fa-check"></i></a>' +
-                '<a href="#"><i class="fas fa-times"></i>' +
                 '<a href="#"><i class="fas fa-trash-alt"></i></a>' +
             '</div>' +
         '</div>' +
     '</div>';
-}
+
+   }
+
+   const buttons = document.querySelectorAll("i");
+   buttons.forEach(button => {
+       button.addEventListener("click", function(e) {
+        const bookContainer = document.querySelector(".book__container");
+           if (e.target.classList.contains("fa-trash-alt")) {
+               bookContainer.remove();
+           }
+           if (e.target.classList.contains("fa-check")) {
+               if (e.target.parentNode.parentNode.firstChild.classList.contains("no")) {
+                e.target.parentNode.parentNode.firstChild.classList.toggle("yes");
+                if (e.target.parentNode.parentNode.firstChild.textContent === "I have not read it") {
+                    e.target.parentNode.parentNode.firstChild.textContent = "I read it";
+                } else {
+                    e.target.parentNode.parentNode.firstChild.textContent = "I have not read it"
+                }
+               } else {
+                e.target.parentNode.parentNode.firstChild.classList.toggle("no");
+               }
+           }
+       })
+   })
+
+
     
     modalTitle.value = "";
     modalAuthor.value = "";
     modalPages.value = "";
     isRead.checked = false;
+   }
 }
-}
 
-  
-
-
-
-//Read functionality and buttons
-//Filter function
-//Local storage
-
-
-
-
-
-
+const bookContainer = document.querySelectorAll(".book__container");
+   const filterBtn = document.querySelectorAll(".filter-btn");
+   myLibrary.style.display = "flex";
+   filterBtn.forEach(button => {
+    button.addEventListener("click", function(e) {
+        const filter = e.target.dataset.filter;
+        for (let i = 0; i < myLibrary.length; i++) {
+            if (filter == "all") {
+                bookContainer.forEach(item => {
+                    item.style.display = "flex";
+                })
+            } else if (filter === "read") {
+                if (myLibrary[i].read) {
+                    myLibrary[i].style.display = "flex";
+                } else {
+                    library.style.display = "none";
+                }
+            }
+        }
+    })
+})
