@@ -46,9 +46,7 @@ button:hover {
     background: var(--main-color);
     color: var(--title-color)
 }
-.all,
-.books__read,
-.books__not-read {
+.filter-btn {
     border-radius: 0;
     text-transform: uppercase;
     letter-spacing: 0.1rem;

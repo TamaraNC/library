@@ -116,9 +116,8 @@ function render() {
    const buttons = document.querySelectorAll("i");
    buttons.forEach(button => {
        button.addEventListener("click", function(e) {
-        const bookContainer = document.querySelector(".book__container");
            if (e.target.classList.contains("fa-trash-alt")) {
-               bookContainer.remove();
+               e.target.parentNode.parentNode.parentNode.parentNode.remove();
            }
            if (e.target.classList.contains("fa-check")) {
                if (e.target.parentNode.parentNode.firstChild.classList.contains("no")) {
