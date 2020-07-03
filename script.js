@@ -61,8 +61,6 @@ function addBookToLibrary(e) {
     
     hideModal();
     render();
-   }
-
 }
 
 function render() {
@@ -70,7 +68,7 @@ function render() {
     for (let i = 0; i < myLibrary.length; i++) {
         if(myLibrary[i].read){
         library.innerHTML += 
-        '<div class="book__container">' +
+        '<div class="book__container read">' +
         '<div class="book">' +
             '<div class="title__content">' +
                 '<span class="main">Title : </span><span class="book__title">' +` ${myLibrary[i].title}`+'</span>' +
@@ -88,9 +86,8 @@ function render() {
             '</div>' +
         '</div>' +
     '</div>';
-    
             
-    }else {
+    } else {
     library.innerHTML += 
         '<div class="book__container">' +
         '<div class="book">' +
@@ -114,28 +111,66 @@ function render() {
    }
 
    const buttons = document.querySelectorAll("i");
-   buttons.forEach(button => {
-       button.addEventListener("click", function(e) {
-           if (e.target.classList.contains("fa-trash-alt")) {
-               e.target.parentNode.parentNode.parentNode.parentNode.remove();
-           }
-           if (e.target.classList.contains("fa-check")) {
-               if (e.target.parentNode.parentNode.firstChild.classList.contains("no")) {
-                e.target.parentNode.parentNode.firstChild.classList.toggle("yes");
-                if (e.target.parentNode.parentNode.firstChild.textContent === "I have not read it") {
-                    e.target.parentNode.parentNode.firstChild.textContent = "I read it";
-                } else {
-                    e.target.parentNode.parentNode.firstChild.textContent = "I have not read it"
+    buttons.forEach(button => {
+       button.addEventListener("click", toggleBooks) 
+    })
+   function toggleBooks(e) {
+        //Delete books
+        const button = e.target;
+        if (button.classList.contains("fa-trash-alt")) {
+         button.parentNode.parentNode.parentNode.parentNode.remove();
+         myLibrary.splice(button.parentNode.parentNode.parentNode.parentNode, 1)
+     }
+     //Toggle read status
+     if (button.classList.contains("fa-check")) {
+         if (button.parentNode.parentNode.firstChild.classList.contains("no")) {
+          button.parentNode.parentNode.firstChild.classList.toggle("yes");
+          if (button.parentNode.parentNode.firstChild.textContent === "I have not read it") {
+              button.parentNode.parentNode.firstChild.textContent = "I read it";
+          } else {
+              button.parentNode.parentNode.firstChild.textContent = "I have not read it"
+          }
+         } else {
+          button.parentNode.parentNode.firstChild.classList.toggle("no");
+         }
+      }
+    }
+
+   }
+
+   const filterBtn = document.querySelectorAll(".filter-btn");
+   filterBtn.forEach(button => {
+    button.addEventListener("click", filter) 
+    })
+
+    function filter(e) {
+        const books = document.querySelectorAll(".book__container")
+        if (e.target.classList.contains("all")) {
+            books.forEach(book => {
+                book.style.display = "flex";
+            });
+        } else if (e.target.classList.contains("read")) {
+            books.forEach(book => {
+                var read = book.querySelector('.book__read-elements .book__read').classList.contains('yes');//get the read value from html
+                if(read){
+                    book.style.display = "flex";
+                }else{
+                    book.style.display = "none";
                 }
-               } else {
-                e.target.parentNode.parentNode.firstChild.classList.toggle("no");
-               }
-           }
-       })
-   })
+            })
+        } else if (e.target.classList.contains("not-read")) {
+            books.forEach(book => {
+                var read = book.querySelector('.book__read-elements .book__read').classList.contains('yes');//get the read value from html
+                if(!read){
+                    book.style.display = "flex";
+                }else{
+                    book.style.display = "none";
+                }
+            })
+        }
+    }
+   
 
-
-    
     modalTitle.value = "";
     modalAuthor.value = "";
     modalPages.value = "";
@@ -143,24 +178,6 @@ function render() {
    }
 }
 
-const bookContainer = document.querySelectorAll(".book__container");
-   const filterBtn = document.querySelectorAll(".filter-btn");
-   myLibrary.style.display = "flex";
-   filterBtn.forEach(button => {
-    button.addEventListener("click", function(e) {
-        const filter = e.target.dataset.filter;
-        for (let i = 0; i < myLibrary.length; i++) {
-            if (filter == "all") {
-                bookContainer.forEach(item => {
-                    item.style.display = "flex";
-                })
-            } else if (filter === "read") {
-                if (myLibrary[i].read) {
-                    myLibrary[i].style.display = "flex";
-                } else {
-                    library.style.display = "none";
-                }
-            }
-        }
-    })
-})
+
+
+

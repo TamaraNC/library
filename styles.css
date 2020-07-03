@@ -105,7 +105,6 @@ input {
 .main,
 i {
     color: white;
-    /*pointer-events: none;*/
     margin: 0.5rem;
 }
 .book__title,
@@ -154,4 +153,18 @@ i {
 }
 .yes {
     color:rgb(110, 176, 120)
+}
+footer {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0.5rem;
+}
+a {
+    text-decoration: none;
+    color: var(--title-color)
+}
+a:hover {
+    text-decoration: underline;
 }
